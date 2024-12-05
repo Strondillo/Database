@@ -1,0 +1,99 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patients",
+  "info": {
+    "singularName": "patient",
+    "pluralName": "patients",
+    "displayName": "patient",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female"
+      ]
+    },
+    "living_situation": {
+      "type": "string"
+    },
+    "diagnosis": {
+      "type": "string"
+    },
+    "treatment": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "bmi": {
+      "type": "decimal"
+    },
+    "estimated_energy_intake": {
+      "type": "integer"
+    },
+    "estimated_protein_intake": {
+      "type": "integer"
+    },
+    "biochemical_data": {
+      "type": "richtext"
+    },
+    "physical_activity": {
+      "type": "string"
+    },
+    "motivation_importance": {
+      "type": "integer"
+    },
+    "motivation_confidence": {
+      "type": "integer"
+    },
+    "motivation_readiness": {
+      "type": "integer"
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "occupation": {
+      "type": "string"
+    },
+    "birthday": {
+      "type": "date"
+    },
+    "risk": {
+      "type": "enumeration",
+      "enum": [
+        "High",
+        "Moderate",
+        "Low"
+      ]
+    },
+    "isNew": {
+      "type": "boolean"
+    },
+    "visits": {
+      "type": "integer"
+    }
+  }
+}
