@@ -435,6 +435,7 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
       'api::patient.patient'
     > &
       Schema.Attribute.Private;
+    meals: Schema.Attribute.String;
     motivation_confidence: Schema.Attribute.Integer;
     motivation_importance: Schema.Attribute.Integer;
     motivation_readiness: Schema.Attribute.Integer;

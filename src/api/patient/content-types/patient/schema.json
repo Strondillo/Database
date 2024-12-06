@@ -94,6 +94,9 @@
     },
     "visits": {
       "type": "integer"
+    },
+    "meals": {
+      "type": "string"
     }
   }
 }
