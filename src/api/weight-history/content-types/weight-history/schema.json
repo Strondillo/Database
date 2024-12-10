@@ -4,7 +4,8 @@
   "info": {
     "singularName": "weight-history",
     "pluralName": "weight-histories",
-    "displayName": "WeightHistory"
+    "displayName": "WeightHistory",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,11 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "patient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::patient.patient"
     }
   }
 }

@@ -373,6 +373,7 @@ export interface ApiClinicalConditionClinicalCondition
   extends Struct.CollectionTypeSchema {
   collectionName: 'clinical_conditions';
   info: {
+    description: '';
     displayName: 'ClinicalCondition';
     pluralName: 'clinical-conditions';
     singularName: 'clinical-condition';
@@ -391,6 +392,7 @@ export interface ApiClinicalConditionClinicalCondition
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -500,6 +502,7 @@ export interface ApiWeightHistoryWeightHistory
   extends Struct.CollectionTypeSchema {
   collectionName: 'weight_histories';
   info: {
+    description: '';
     displayName: 'WeightHistory';
     pluralName: 'weight-histories';
     singularName: 'weight-history';
@@ -518,6 +521,7 @@ export interface ApiWeightHistoryWeightHistory
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

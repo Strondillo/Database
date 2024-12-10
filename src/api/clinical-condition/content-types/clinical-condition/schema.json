@@ -4,7 +4,8 @@
   "info": {
     "singularName": "clinical-condition",
     "pluralName": "clinical-conditions",
-    "displayName": "ClinicalCondition"
+    "displayName": "ClinicalCondition",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,11 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "patient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::patient.patient"
     }
   }
 }
