@@ -392,7 +392,6 @@ export interface ApiClinicalConditionClinicalCondition
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -450,15 +449,10 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     biochemical_data: Schema.Attribute.RichText;
     birthday: Schema.Attribute.Date;
     bmi: Schema.Attribute.Decimal;
-    clinical_conditions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::clinical-condition.clinical-condition'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     diagnosis: Schema.Attribute.String;
-    diet_prescription: Schema.Attribute.Text;
     estimated_energy_intake: Schema.Attribute.Integer;
     estimated_protein_intake: Schema.Attribute.Integer;
     gender: Schema.Attribute.Enumeration<['Male', 'Female']>;
@@ -472,7 +466,6 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     meals: Schema.Attribute.String;
-    medical_diagnosis: Schema.Attribute.Text;
     motivation_confidence: Schema.Attribute.Integer;
     motivation_importance: Schema.Attribute.Integer;
     motivation_readiness: Schema.Attribute.Integer;
@@ -490,6 +483,47 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     visits: Schema.Attribute.Integer;
+    weight: Schema.Attribute.Decimal;
+  };
+}
+
+export interface ApiScreenedPatientScreenedPatient
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'screened_patients';
+  info: {
+    displayName: 'ScreenedPatient';
+    pluralName: 'screened-patients';
+    singularName: 'screened-patient';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    age: Schema.Attribute.Integer;
+    bmi: Schema.Attribute.Decimal;
+    clinical_conditions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::clinical-condition.clinical-condition'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    diet_prescription: Schema.Attribute.Text;
+    gender: Schema.Attribute.Enumeration<['Male', 'Female']>;
+    height: Schema.Attribute.Decimal;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::screened-patient.screened-patient'
+    > &
+      Schema.Attribute.Private;
+    medical_diagnosis: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    risk: Schema.Attribute.Enumeration<['High', 'Moderate', 'Low']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
     weight: Schema.Attribute.Decimal;
     weight_histories: Schema.Attribute.Relation<
       'oneToMany',
@@ -1041,6 +1075,7 @@ declare module '@strapi/strapi' {
       'api::clinical-condition.clinical-condition': ApiClinicalConditionClinicalCondition;
       'api::custom-user.custom-user': ApiCustomUserCustomUser;
       'api::patient.patient': ApiPatientPatient;
+      'api::screened-patient.screened-patient': ApiScreenedPatientScreenedPatient;
       'api::weight-history.weight-history': ApiWeightHistoryWeightHistory;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

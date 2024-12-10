@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "screened_patients",
+  "info": {
+    "singularName": "screened-patient",
+    "pluralName": "screened-patients",
+    "displayName": "ScreenedPatient"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female"
+      ]
+    },
+    "medical_diagnosis": {
+      "type": "text"
+    },
+    "diet_prescription": {
+      "type": "text"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "bmi": {
+      "type": "decimal"
+    },
+    "risk": {
+      "type": "enumeration",
+      "enum": [
+        "High",
+        "Moderate",
+        "Low"
+      ]
+    },
+    "clinical_conditions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::clinical-condition.clinical-condition"
+    },
+    "weight_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::weight-history.weight-history"
+    }
+  }
+}

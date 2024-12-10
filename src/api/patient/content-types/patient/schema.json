@@ -97,22 +97,6 @@
     },
     "meals": {
       "type": "string"
-    },
-    "medical_diagnosis": {
-      "type": "text"
-    },
-    "diet_prescription": {
-      "type": "text"
-    },
-    "clinical_conditions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::clinical-condition.clinical-condition"
-    },
-    "weight_histories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::weight-history.weight-history"
     }
   }
 }
