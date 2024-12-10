@@ -369,6 +369,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiClinicalConditionClinicalCondition
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'clinical_conditions';
+  info: {
+    displayName: 'ClinicalCondition';
+    pluralName: 'clinical-conditions';
+    singularName: 'clinical-condition';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::clinical-condition.clinical-condition'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCustomUserCustomUser extends Struct.CollectionTypeSchema {
   collectionName: 'custom_users';
   info: {
@@ -419,10 +448,15 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     biochemical_data: Schema.Attribute.RichText;
     birthday: Schema.Attribute.Date;
     bmi: Schema.Attribute.Decimal;
+    clinical_conditions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::clinical-condition.clinical-condition'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     diagnosis: Schema.Attribute.String;
+    diet_prescription: Schema.Attribute.Text;
     estimated_energy_intake: Schema.Attribute.Integer;
     estimated_protein_intake: Schema.Attribute.Integer;
     gender: Schema.Attribute.Enumeration<['Male', 'Female']>;
@@ -436,6 +470,7 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     meals: Schema.Attribute.String;
+    medical_diagnosis: Schema.Attribute.Text;
     motivation_confidence: Schema.Attribute.Integer;
     motivation_importance: Schema.Attribute.Integer;
     motivation_readiness: Schema.Attribute.Integer;
@@ -454,6 +489,39 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     visits: Schema.Attribute.Integer;
     weight: Schema.Attribute.Decimal;
+    weight_histories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::weight-history.weight-history'
+    >;
+  };
+}
+
+export interface ApiWeightHistoryWeightHistory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'weight_histories';
+  info: {
+    displayName: 'WeightHistory';
+    pluralName: 'weight-histories';
+    singularName: 'weight-history';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::weight-history.weight-history'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -966,8 +1034,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::clinical-condition.clinical-condition': ApiClinicalConditionClinicalCondition;
       'api::custom-user.custom-user': ApiCustomUserCustomUser;
       'api::patient.patient': ApiPatientPatient;
+      'api::weight-history.weight-history': ApiWeightHistoryWeightHistory;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

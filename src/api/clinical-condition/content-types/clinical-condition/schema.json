@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clinical_conditions",
+  "info": {
+    "singularName": "clinical-condition",
+    "pluralName": "clinical-conditions",
+    "displayName": "ClinicalCondition"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

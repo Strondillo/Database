@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weight_histories",
+  "info": {
+    "singularName": "weight-history",
+    "pluralName": "weight-histories",
+    "displayName": "WeightHistory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}
