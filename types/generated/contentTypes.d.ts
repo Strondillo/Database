@@ -491,6 +491,7 @@ export interface ApiScreenedPatientScreenedPatient
   extends Struct.CollectionTypeSchema {
   collectionName: 'screened_patients';
   info: {
+    description: '';
     displayName: 'ScreenedPatient';
     pluralName: 'screened-patients';
     singularName: 'screened-patient';
@@ -555,7 +556,6 @@ export interface ApiWeightHistoryWeightHistory
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

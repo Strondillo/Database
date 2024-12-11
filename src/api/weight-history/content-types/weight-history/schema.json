@@ -14,11 +14,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "patient": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::patient.patient"
     }
   }
 }

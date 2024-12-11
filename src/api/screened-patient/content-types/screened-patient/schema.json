@@ -4,7 +4,8 @@
   "info": {
     "singularName": "screened-patient",
     "pluralName": "screened-patients",
-    "displayName": "ScreenedPatient"
+    "displayName": "ScreenedPatient",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
