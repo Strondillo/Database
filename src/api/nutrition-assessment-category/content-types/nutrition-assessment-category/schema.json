@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nutrition_assessment_categories",
+  "info": {
+    "singularName": "nutrition-assessment-category",
+    "pluralName": "nutrition-assessment-categories",
+    "displayName": "NutritionAssessmentCategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category_name": {
+      "type": "string"
+    },
+    "content": {
+      "type": "json"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    },
+    "screened_patient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::screened-patient.screened-patient",
+      "inversedBy": "nutrition_assessment_categories"
+    }
+  }
+}

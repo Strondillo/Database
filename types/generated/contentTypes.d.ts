@@ -433,6 +433,46 @@ export interface ApiCustomUserCustomUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNutritionAssessmentCategoryNutritionAssessmentCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'nutrition_assessment_categories';
+  info: {
+    displayName: 'NutritionAssessmentCategory';
+    pluralName: 'nutrition-assessment-categories';
+    singularName: 'nutrition-assessment-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category_name: Schema.Attribute.String;
+    content: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    file: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-assessment-category.nutrition-assessment-category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    screened_patient: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::screened-patient.screened-patient'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
   collectionName: 'patients';
   info: {
@@ -520,6 +560,10 @@ export interface ApiScreenedPatientScreenedPatient
       Schema.Attribute.Private;
     medical_diagnosis: Schema.Attribute.Text;
     name: Schema.Attribute.String;
+    nutrition_assessment_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-assessment-category.nutrition-assessment-category'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     risk: Schema.Attribute.Enumeration<['High', 'Moderate', 'Low']>;
     updatedAt: Schema.Attribute.DateTime;
@@ -1074,6 +1118,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::clinical-condition.clinical-condition': ApiClinicalConditionClinicalCondition;
       'api::custom-user.custom-user': ApiCustomUserCustomUser;
+      'api::nutrition-assessment-category.nutrition-assessment-category': ApiNutritionAssessmentCategoryNutritionAssessmentCategory;
       'api::patient.patient': ApiPatientPatient;
       'api::screened-patient.screened-patient': ApiScreenedPatientScreenedPatient;
       'api::weight-history.weight-history': ApiWeightHistoryWeightHistory;

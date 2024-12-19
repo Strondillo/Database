@@ -57,6 +57,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::weight-history.weight-history"
+    },
+    "nutrition_assessment_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::nutrition-assessment-category.nutrition-assessment-category",
+      "mappedBy": "screened_patient"
     }
   }
 }
