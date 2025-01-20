@@ -437,6 +437,7 @@ export interface ApiNutritionAssessmentCategoryNutritionAssessmentCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'nutrition_assessment_categories';
   info: {
+    description: '';
     displayName: 'NutritionAssessmentCategory';
     pluralName: 'nutrition-assessment-categories';
     singularName: 'nutrition-assessment-category';
@@ -446,7 +447,7 @@ export interface ApiNutritionAssessmentCategoryNutritionAssessmentCategory
   };
   attributes: {
     category_name: Schema.Attribute.String;
-    content: Schema.Attribute.JSON;
+    content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -462,6 +463,45 @@ export interface ApiNutritionAssessmentCategoryNutritionAssessmentCategory
       'api::nutrition-assessment-category.nutrition-assessment-category'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    screened_patient: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::screened-patient.screened-patient'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNutritionDiagnosisInterventionNutritionDiagnosisIntervention
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'nutrition_diagnosis_interventions';
+  info: {
+    description: '';
+    displayName: 'Nutrition-diagnosis-intervention';
+    pluralName: 'nutrition-diagnosis-interventions';
+    singularName: 'nutrition-diagnosis-intervention';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    goals: Schema.Attribute.JSON;
+    intervention_plan: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention'
+    > &
+      Schema.Attribute.Private;
+    nutrition_intervention_table: Schema.Attribute.JSON;
+    nutrition_problem: Schema.Attribute.Text;
+    nutrition_table: Schema.Attribute.JSON;
+    prescription: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
     screened_patient: Schema.Attribute.Relation<
       'manyToOne',
@@ -563,6 +603,10 @@ export interface ApiScreenedPatientScreenedPatient
     nutrition_assessment_categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::nutrition-assessment-category.nutrition-assessment-category'
+    >;
+    nutrition_diagnosis_interventions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention'
     >;
     publishedAt: Schema.Attribute.DateTime;
     risk: Schema.Attribute.Enumeration<['High', 'Moderate', 'Low']>;
@@ -1119,6 +1163,7 @@ declare module '@strapi/strapi' {
       'api::clinical-condition.clinical-condition': ApiClinicalConditionClinicalCondition;
       'api::custom-user.custom-user': ApiCustomUserCustomUser;
       'api::nutrition-assessment-category.nutrition-assessment-category': ApiNutritionAssessmentCategoryNutritionAssessmentCategory;
+      'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention': ApiNutritionDiagnosisInterventionNutritionDiagnosisIntervention;
       'api::patient.patient': ApiPatientPatient;
       'api::screened-patient.screened-patient': ApiScreenedPatientScreenedPatient;
       'api::weight-history.weight-history': ApiWeightHistoryWeightHistory;

@@ -63,6 +63,12 @@
       "relation": "oneToMany",
       "target": "api::nutrition-assessment-category.nutrition-assessment-category",
       "mappedBy": "screened_patient"
+    },
+    "nutrition_diagnosis_interventions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention",
+      "mappedBy": "screened_patient"
     }
   }
 }

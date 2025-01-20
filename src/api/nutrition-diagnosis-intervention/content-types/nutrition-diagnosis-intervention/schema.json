@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nutrition_diagnosis_interventions",
+  "info": {
+    "singularName": "nutrition-diagnosis-intervention",
+    "pluralName": "nutrition-diagnosis-interventions",
+    "displayName": "Nutrition-diagnosis-intervention",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nutrition_problem": {
+      "type": "text"
+    },
+    "screened_patient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::screened-patient.screened-patient",
+      "inversedBy": "nutrition_diagnosis_interventions"
+    },
+    "goals": {
+      "type": "json"
+    },
+    "intervention_plan": {
+      "type": "json"
+    },
+    "prescription": {
+      "type": "json"
+    },
+    "nutrition_table": {
+      "type": "json"
+    },
+    "nutrition_intervention_table": {
+      "type": "json"
+    }
+  }
+}
