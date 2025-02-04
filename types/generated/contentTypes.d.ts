@@ -415,6 +415,10 @@ export interface ApiCustomUserCustomUser extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    doctor_referrals: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    >;
     Email: Schema.Attribute.Email;
     First_Name: Schema.Attribute.String;
     Last_Name: Schema.Attribute.String;
@@ -427,6 +431,10 @@ export interface ApiCustomUserCustomUser extends Struct.CollectionTypeSchema {
     Password: Schema.Attribute.Password;
     prcId: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    rnd_referrals: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -567,6 +575,42 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiReferralReferral extends Struct.CollectionTypeSchema {
+  collectionName: 'referrals';
+  info: {
+    displayName: 'Referral';
+    pluralName: 'referrals';
+    singularName: 'referral';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    doctor: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::custom-user.custom-user'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rnd: Schema.Attribute.Relation<'manyToOne', 'api::custom-user.custom-user'>;
+    screened_patient: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::screened-patient.screened-patient'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiScreenedPatientScreenedPatient
   extends Struct.CollectionTypeSchema {
   collectionName: 'screened_patients';
@@ -609,6 +653,7 @@ export interface ApiScreenedPatientScreenedPatient
       'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    referrals: Schema.Attribute.Relation<'oneToMany', 'api::referral.referral'>;
     risk: Schema.Attribute.Enumeration<['High', 'Moderate', 'Low']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1165,6 +1210,7 @@ declare module '@strapi/strapi' {
       'api::nutrition-assessment-category.nutrition-assessment-category': ApiNutritionAssessmentCategoryNutritionAssessmentCategory;
       'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention': ApiNutritionDiagnosisInterventionNutritionDiagnosisIntervention;
       'api::patient.patient': ApiPatientPatient;
+      'api::referral.referral': ApiReferralReferral;
       'api::screened-patient.screened-patient': ApiScreenedPatientScreenedPatient;
       'api::weight-history.weight-history': ApiWeightHistoryWeightHistory;
       'plugin::content-releases.release': PluginContentReleasesRelease;

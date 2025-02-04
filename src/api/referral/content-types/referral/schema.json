@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrals",
+  "info": {
+    "singularName": "referral",
+    "pluralName": "referrals",
+    "displayName": "Referral"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "screened_patient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::screened-patient.screened-patient"
+    },
+    "doctor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::custom-user.custom-user",
+      "inversedBy": "doctor_referrals"
+    },
+    "rnd": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::custom-user.custom-user",
+      "inversedBy": "rnd_referrals"
+    }
+  }
+}

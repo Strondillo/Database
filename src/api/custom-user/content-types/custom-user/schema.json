@@ -33,6 +33,18 @@
         "Doctor",
         "RND"
       ]
+    },
+    "doctor_referrals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral",
+      "mappedBy": "doctor"
+    },
+    "rnd_referrals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral",
+      "mappedBy": "rnd"
     }
   }
 }

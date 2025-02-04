@@ -69,6 +69,11 @@
       "relation": "oneToMany",
       "target": "api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention",
       "mappedBy": "screened_patient"
+    },
+    "referrals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral"
     }
   }
 }
