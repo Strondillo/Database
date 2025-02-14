@@ -74,6 +74,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::referral.referral"
+    },
+    "nutrition_monitoringand_evaluations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation",
+      "mappedBy": "screened_patient"
     }
   }
 }

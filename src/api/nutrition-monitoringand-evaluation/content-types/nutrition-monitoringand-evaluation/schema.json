@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nutrition_monitoringand_evaluations",
+  "info": {
+    "singularName": "nutrition-monitoringand-evaluation",
+    "pluralName": "nutrition-monitoringand-evaluations",
+    "displayName": "NutritionMonitoringandEvaluation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "indicator": {
+      "type": "string"
+    },
+    "criteria": {
+      "type": "string"
+    },
+    "statusofprogress": {
+      "type": "enumeration",
+      "enum": [
+        "New",
+        "Achieved",
+        "Discontinued",
+        "Not Achieved"
+      ]
+    },
+    "progresspercentage": {
+      "type": "string"
+    },
+    "domain_name": {
+      "type": "string"
+    },
+    "Notes": {
+      "type": "string"
+    },
+    "screened_patient": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::screened-patient.screened-patient",
+      "inversedBy": "nutrition_monitoringand_evaluations"
+    }
+  }
+}

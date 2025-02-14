@@ -521,6 +521,46 @@ export interface ApiNutritionDiagnosisInterventionNutritionDiagnosisIntervention
   };
 }
 
+export interface ApiNutritionMonitoringandEvaluationNutritionMonitoringandEvaluation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'nutrition_monitoringand_evaluations';
+  info: {
+    displayName: 'NutritionMonitoringandEvaluation';
+    pluralName: 'nutrition-monitoringand-evaluations';
+    singularName: 'nutrition-monitoringand-evaluation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    criteria: Schema.Attribute.String;
+    domain_name: Schema.Attribute.String;
+    indicator: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation'
+    > &
+      Schema.Attribute.Private;
+    Notes: Schema.Attribute.String;
+    progresspercentage: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    screened_patient: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::screened-patient.screened-patient'
+    >;
+    statusofprogress: Schema.Attribute.Enumeration<
+      ['New', 'Achieved', 'Discontinued', 'Not Achieved']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
   collectionName: 'patients';
   info: {
@@ -651,6 +691,10 @@ export interface ApiScreenedPatientScreenedPatient
     nutrition_diagnosis_interventions: Schema.Attribute.Relation<
       'oneToMany',
       'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention'
+    >;
+    nutrition_monitoringand_evaluations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation'
     >;
     publishedAt: Schema.Attribute.DateTime;
     referrals: Schema.Attribute.Relation<'oneToMany', 'api::referral.referral'>;
@@ -1209,6 +1253,7 @@ declare module '@strapi/strapi' {
       'api::custom-user.custom-user': ApiCustomUserCustomUser;
       'api::nutrition-assessment-category.nutrition-assessment-category': ApiNutritionAssessmentCategoryNutritionAssessmentCategory;
       'api::nutrition-diagnosis-intervention.nutrition-diagnosis-intervention': ApiNutritionDiagnosisInterventionNutritionDiagnosisIntervention;
+      'api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation': ApiNutritionMonitoringandEvaluationNutritionMonitoringandEvaluation;
       'api::patient.patient': ApiPatientPatient;
       'api::referral.referral': ApiReferralReferral;
       'api::screened-patient.screened-patient': ApiScreenedPatientScreenedPatient;
