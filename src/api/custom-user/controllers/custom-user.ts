@@ -98,7 +98,7 @@ export default factories.createCoreController('api::custom-user.custom-user', ({
           Email: user.Email,
           prcId: user.prcId,
           AccountType: user.AccountType,
-          hashedPassword: user.Password, // exposing this is not recommended in production
+          hashedPassword: user.Password,
         },
       });
     } catch (error) {
