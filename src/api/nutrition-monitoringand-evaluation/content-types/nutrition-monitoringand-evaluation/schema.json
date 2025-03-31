@@ -4,42 +4,37 @@
   "info": {
     "singularName": "nutrition-monitoringand-evaluation",
     "pluralName": "nutrition-monitoringand-evaluations",
-    "displayName": "NutritionMonitoringandEvaluation"
+    "displayName": "NutritionMonitoringandEvaluation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "indicator": {
-      "type": "string"
-    },
-    "criteria": {
-      "type": "string"
-    },
-    "statusofprogress": {
-      "type": "enumeration",
-      "enum": [
-        "New",
-        "Achieved",
-        "Discontinued",
-        "Not Achieved"
-      ]
-    },
-    "progresspercentage": {
-      "type": "string"
-    },
-    "domain_name": {
-      "type": "string"
-    },
-    "Notes": {
-      "type": "string"
-    },
     "screened_patient": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::screened-patient.screened-patient",
       "inversedBy": "nutrition_monitoringand_evaluations"
+    },
+    "Date": {
+      "type": "datetime"
+    },
+    "Type_of_Domain": {
+      "type": "enumeration",
+      "enum": [
+        "Food and Nutrition-Related History",
+        "Anthropometric Measurements",
+        "Biochemical Data, Medical Tests, and Procedures",
+        "Physical Exam Findings",
+        "Assessment, Monitoring, and Evaluation Tools",
+        "Etiology Categories",
+        "Comparative Standards"
+      ]
+    },
+    "Notes": {
+      "type": "blocks"
     }
   }
 }

@@ -525,6 +525,7 @@ export interface ApiNutritionMonitoringandEvaluationNutritionMonitoringandEvalua
   extends Struct.CollectionTypeSchema {
   collectionName: 'nutrition_monitoringand_evaluations';
   info: {
+    description: '';
     displayName: 'NutritionMonitoringandEvaluation';
     pluralName: 'nutrition-monitoringand-evaluations';
     singularName: 'nutrition-monitoringand-evaluation';
@@ -536,24 +537,29 @@ export interface ApiNutritionMonitoringandEvaluationNutritionMonitoringandEvalua
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    criteria: Schema.Attribute.String;
-    domain_name: Schema.Attribute.String;
-    indicator: Schema.Attribute.String;
+    Date: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation'
     > &
       Schema.Attribute.Private;
-    Notes: Schema.Attribute.String;
-    progresspercentage: Schema.Attribute.String;
+    Notes: Schema.Attribute.Blocks;
     publishedAt: Schema.Attribute.DateTime;
     screened_patient: Schema.Attribute.Relation<
       'manyToOne',
       'api::screened-patient.screened-patient'
     >;
-    statusofprogress: Schema.Attribute.Enumeration<
-      ['New', 'Achieved', 'Discontinued', 'Not Achieved']
+    Type_of_Domain: Schema.Attribute.Enumeration<
+      [
+        'Food and Nutrition-Related History',
+        'Anthropometric Measurements',
+        'Biochemical Data, Medical Tests, and Procedures',
+        'Physical Exam Findings',
+        'Assessment, Monitoring, and Evaluation Tools',
+        'Etiology Categories',
+        'Comparative Standards',
+      ]
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
