@@ -4,4 +4,7 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreRouter('api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation');
+// This will use the default routes which should include PUT
+export default factories.createCoreRouter(
+  'api::nutrition-monitoringand-evaluation.nutrition-monitoringand-evaluation'
+);
